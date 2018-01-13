@@ -1,0 +1,1 @@
+INSERT INTO STUDENT (ST_USERNAME, ST_PASSWORD, ST_NAME, ST_SURNAME) VALUES ('antonggramming@gmail.com', '123', 'George','Antoniadis');
