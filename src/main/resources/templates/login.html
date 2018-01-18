@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
+<head th:fragment="htmlhead">
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Login</title>
+  <meta name="author" content="George Antoniadis"/>
+  <title>User login page</title>
 
-  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css'/>
-  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'/>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel='stylesheet prefetch' th:href="@{https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css}"/>
+  <link rel='stylesheet prefetch' th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css}"/>
+  <link rel="stylesheet" th:href="@{style.css}"/>
 </head>
 
 <body>
@@ -42,24 +43,23 @@
 </nav>
   
 <section id="login" class="wrapper">
-<form class="form-signin card col-12 col-md-7 col-xl-4 m-auto ">
+<form th:action="@{/login}" th:object="${user}" method="post" class="form-signin card col-12 col-md-7 col-xl-4 m-auto">
   <h2 class="form-heading mt-2">Please Login</h2>
-  <input type="email" class="form-control my-1" name="username" placeholder="Email Address" required="true" autofocus=""/>
-  <input type="password" class="form-control mb-2" name="password" placeholder="Password" required="true"/>
+  <input type="email" class="form-control my-1" name="email" placeholder="Email Address" required="true" autofocus="" th:field="*{email}"/>
+  <input type="password" class="form-control mb-2" name="password" placeholder="Password" required="true" th:field="*{password}"/>
   <button class="btn btn-lg btn-primary btn-block mb-3 mx-auto col-md-4 col-8" type="submit">Login</button>
 </form>  
 </section>
-
-<section id="copyright ">
+<section id="copyright" class="fixed-bottom py-3">
     <div class="copyright text-center text-white">
       <div class="container">
         <small>Copyright © We 2018</small>
       </div>
     </div>
-      </section>
+</section>
   </div>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
+  <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js}"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js}"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js}"></script>
 </body>
 </html>
