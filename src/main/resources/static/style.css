@@ -12,3 +12,14 @@ section {
 .form-signin{
   background-color:#d2d2d2;
 }
+
+.match{
+  border-color:green;
+  background-color:#b5e6b5;
+  color:black;
+}
+.mismatch{
+  border-color:red;
+  background-color:#e8b7b2;
+  color:black;
+}

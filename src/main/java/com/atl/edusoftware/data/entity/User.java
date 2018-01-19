@@ -7,6 +7,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="person")
@@ -46,7 +47,7 @@ public class User {
     @Column(name = "age")
     @Min(value = 10,message = "Must be above 10 to register")
     @Max(value = 99,message = "Must be below 99 to register")
-    @NotEmpty(message = "Please provide an age")
+    @NotNull(message = "Please provide an age")
     private int age;
 
     @Column(name = "gender")
@@ -57,23 +58,69 @@ public class User {
     @NotEmpty(message = "Please provide a role")
     private String role;
 
-    public int getId() { return id; }
+    public int getId() {
+        return id;
+    }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public String getEmail() { return email; }
+    public String getEmail() {
+        return email;
+    }
 
-    public void setEmail(String email) { this.email = email; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public String getPassword() { return password; }
+    public String getPassword() {
+        return password;
+    }
 
-    public void setPassword(String password) { this.password = password; }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getSurname() { return surname; }
+    public String getSurname() {
+        return surname;
+    }
 
-    public void setSurname(String surname) { this.surname = surname; }
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 }
+
+

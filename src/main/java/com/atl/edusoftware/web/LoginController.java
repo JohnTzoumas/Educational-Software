@@ -10,24 +10,49 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(value = "/login")
 public class LoginController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public String getIndex(){
+        return "index";
+    }
+
+
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String getLogin(Model model){
         model.addAttribute("user", new User());//TODO get rid of coupling
         return "login";
     }
 
-    @RequestMapping(method= RequestMethod.POST)
-    public String getUsersInfo(@ModelAttribute("user") User user){
+    @RequestMapping(value = "/login",method= RequestMethod.POST)
+    public String getLoginInfo(@ModelAttribute("user") User user){
         if(userService.UserValidation(user.getPassword(),user.getEmail())){
-            return "user";
+            return "/index";
         }
         return "login";
     }
 
+    @RequestMapping(value = "/registration",method = RequestMethod.GET)
+    public String getRegistration(Model model){
+        model.addAttribute("user", new User());
+        return "registration";
+    }
+
+    @RequestMapping(value = "/registration",method= RequestMethod.POST)
+    public String getRegistrationInfo(@ModelAttribute("user") User user){
+        if(user != null){
+//            user.setAge(((int) user.getAge()));
+            if(userService.UserRegistration(user)){
+                System.out.println("The registration of " + user.getEmail() + " is successful");
+                return "/index";
+            }else{
+                System.out.println("User is null");
+                return "registration";
+            }
+        }
+        return "registration";
+    }
 }
