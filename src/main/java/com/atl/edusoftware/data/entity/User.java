@@ -14,7 +14,8 @@ import javax.validation.constraints.NotNull;
 public class User {
 
     /**
-     * Creating the User entity and using Hibernate validator
+     * Creating the User entity.
+     * Using Hibernate validator
      */
 
     //TODO make gender and role enums.

@@ -42,22 +42,47 @@
   </div>
 </nav>
     <section id="register" class="wrapper">
-      <form th:action="@{/registration}" th:object="${user}" method="post" class="form-signin card col-12 col-md-7 col-xl-4 m-auto">
+      <form th:action="@{/registration}" th:object="${user}" method="post"
+            class="form-signin card col-12 col-md-7 col-xl-4 m-auto"
+            data-toggle="validator">
+
         <h2 class="form-heading mt-2">Please Register</h2>
+
+          <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+               class="validation-message alert alert-danger">Name Error</span>
             <input type="text" id="name" class="form-control form-group" placeholder="First Name" autofocus="autofocus"
                    th:field="*{name}"/>
+
+          <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"
+               class="validation-message alert alert-danger">Surname Error</span>
             <input type="text" id="surname" class="form-control form-group" placeholder="Last Name"
                    th:field="*{surname}"/>
-            <input type="email" class="form-control form-group" placeholder="Email Address"
+
+          <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                class="validation-message alert alert-danger">Email Error</span>
+            <input type="text" class="form-control form-group" placeholder="Email Address"
                    th:field="*{email}"/>
+
+          <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                class="validation-message alert alert-danger">Password Error</span>
             <input type="password" id="password" class="form-control form-group" placeholder="Password"
                    th:field="*{password}"/>
+
+          <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"
+                class="validation-message alert alert-danger">Surname Error</span>
             <input type="number" id="age" class="form-control form-group" placeholder="Age(10-99)"
                    th:field="*{age}"/>
+
+          <span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"
+                class="validation-message alert alert-danger">Gender Error</span>
             <input type="text" id="gender" class="form-control form-group" placeholder="Gender"
                    th:field="*{gender}"/>
+
+          <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}"
+                class="validation-message alert alert-danger">Role Error</span>
           <input type="text" id="role" class="form-control form-group" placeholder="Role"
                  th:field="*{role}"/>
+
         <button class="btn btn-lg btn-primary btn-block mb-3 mx-auto col-md-4 col-8" type="submit">Submit</button>
       </form>
     </section>
@@ -73,5 +98,6 @@
   <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js}"></script>
 <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js}"></script>
 <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js}"></script>
+
 </body>
 </html>

@@ -20,12 +20,9 @@ public class UserService {
     }
 
     public boolean UserRegistration(User user){
-        System.out.println(user.getEmail() + " " + user.getAge());
-        System.out.println(userRepository.findByEmail(user.getEmail())==null);
             //Duplicate email check
             if(userRepository.findByEmail(user.getEmail())==null){
 
-//                user.setAge(Integer.parseInt(user.getAge()));
                 userRepository.save(user);
                 System.out.println(user.getName()+" is saved");
                 return true;

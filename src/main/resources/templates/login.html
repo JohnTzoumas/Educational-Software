@@ -43,12 +43,14 @@
 </nav>
   
 <section id="login" class="wrapper">
+
 <form th:action="@{/login}" th:object="${user}" method="post" class="form-signin card col-12 col-md-7 col-xl-4 m-auto">
   <h2 class="form-heading mt-2">Please Login</h2>
   <input type="email" class="form-control my-1" name="email" placeholder="Email Address" required="true" autofocus="" th:field="*{email}"/>
   <input type="password" class="form-control mb-2" name="password" placeholder="Password" required="true" th:field="*{password}"/>
   <button class="btn btn-lg btn-primary btn-block mb-3 mx-auto col-md-4 col-8" type="submit">Login</button>
-</form>  
+</form>
+
 </section>
 <section id="copyright" class="fixed-bottom py-3">
     <div class="copyright text-center text-white">

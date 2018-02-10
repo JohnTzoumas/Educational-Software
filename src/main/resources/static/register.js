@@ -1,6 +1,5 @@
 $(document).ready(function(){
     const alphaRegex = /^[a-zA-Z]+$/;
-
     $( "#password,#passwordConfirm").on('keyup', function () {
         let password = $("#password").val();
         let confirm = $("#passwordConfirm").val();
@@ -20,5 +19,4 @@ $(document).ready(function(){
     $( "#name,#surname").on('keyup', function () {
         $(this).val().match(alphaRegex) ? $(this)[0].setCustomValidity("") : $(this)[0].setCustomValidity("Please enter only English characters") ;
     });
-
 });
