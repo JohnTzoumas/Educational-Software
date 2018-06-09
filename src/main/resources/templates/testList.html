@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead"></head>
+
+<body>
+<nav th:include="layout :: navbar"></nav>
+
+<!--<ul>-->
+    <!--<li th:each="question : ${questions}">-->
+        <!--<span th:text="${question.text}"></span>-->
+        <!--<ul>-->
+            <!--<li th:each="answer : ${question.answerList}">-->
+                <!--<span >We got fucked a bit </span>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</li>-->
+<!--</ul>-->
+
+<div th:include="layout :: footer"></div>
+</body>
+</html>
