@@ -5,17 +5,23 @@
 <body>
 <nav th:include="layout :: navbar"></nav>
 
-<!--<ul>-->
-    <!--<li th:each="question : ${questions}">-->
-        <!--<span th:text="${question.text}"></span>-->
-        <!--<ul>-->
-            <!--<li th:each="answer : ${question.answerList}">-->
-                <!--<span >We got fucked a bit </span>-->
-            <!--</li>-->
-        <!--</ul>-->
-    <!--</li>-->
-<!--</ul>-->
+<section id="register" class="wrapper">
 
+    <form class="form-signin card col-12 col-md-7 col-xl-4 m-auto" th:action="@{/quiz}" method="post">
+
+        <div th:each="question :${questions}">
+
+            <p th:text="${question.questionText}"></p>
+
+            <div class="form-check" th:each="answer : ${question.answers}">
+                <input class="form-check-input" type="radio" th:value="${answer.isCorrect}" th:name="${question.Id}"/>
+                <label class="for-check-label" th:text="${answer.answerText}" th:for="${question.Id}"></label>
+            </div>
+
+        </div>
+</form>
+    <button class="btn btn-lg btn-primary btn-block mb-3 mx-auto col-md-4 col-8" name="results" type="submit">Submit</button>
+</section>
 <div th:include="layout :: footer"></div>
 </body>
 </html>
