@@ -97,7 +97,5 @@ class User {
     @NotEmpty(message = "Please provide a Surname")
     String surname;
 
-    @Column(name = "role")
-    @NotEmpty(message = "Please provide a role")
-    String role;
+
 }
