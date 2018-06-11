@@ -10,7 +10,7 @@ import com.atl.edusoftware.data.entity.Question
 
 @Repository
  interface QuestionRepository extends CrudRepository<Question,Long>{
-    Question findByChapterId(int chapterId)
+    List<Question> findByChapterId(int chapterId)
 }
 
 @Repository

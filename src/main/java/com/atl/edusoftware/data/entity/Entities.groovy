@@ -29,7 +29,7 @@ import javax.validation.constraints.Pattern
 class Answer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long Id
 
     @Column(name = "answer_text")
@@ -50,7 +50,7 @@ class Answer {
 class Question {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @SequenceGenerator(name = "question_Sequence", sequenceName = "QUESTION_SEQ")
     Long Id
 
@@ -71,7 +71,7 @@ class Question {
 class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     Long id
 

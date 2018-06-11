@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead"></head>
+
+<body>
+<nav th:include="layout :: navbar"></nav>
+
+<section id="chapterList" class="wrapper">
+    <form class="form-signin card col-12 col-md-7 col-xl-4 m-auto" th:action="@{/quiz/get}"  method="get">
+        <button th:each="chapter : ${T(com.atl.edusoftware.commons.Utils).CHAPTERS}" th:text="${chapter.value}" name="chapterId" th:value="${chapter.key}" type="submit" ></button>
+    </form>
+
+</section>
+<div th:include="layout :: footer"></div>
+</body>
+</html>
