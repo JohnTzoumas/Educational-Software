@@ -11,7 +11,7 @@ class QuizService{
     @Autowired
     private QuestionRepository questionRepository
 
-    Iterable<Question> findAll(){
+    public Iterable<Question> findAll(){
         questionRepository.findAll()
     }
 }

@@ -10,13 +10,12 @@ import org.springframework.stereotype.Service;
     @Autowired
     private UserRepository userRepository;
 
-
      boolean UserValidation(String password,String email){
         User user = userRepository.findByEmail(email);
-        if(user==null){
+         if(!user){
             return false;
         }
-        return user.getPassword().equals(password);
+        return user.password == password
     }
 
      boolean UserRegistration(User user){

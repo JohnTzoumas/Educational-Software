@@ -26,10 +26,8 @@ import org.springframework.web.bind.annotation.*;
     @GetMapping("/")
      String getIndex(){
        def all = quizService.findAll()
-        println all
         return "index";
     }
-
 
     @GetMapping("/login")
      String getLogin(Model model){
@@ -38,12 +36,10 @@ import org.springframework.web.bind.annotation.*;
     }
 
     @PostMapping(value = "/login")
-     String getLoginInfo(@ModelAttribute("user") User user){
-        if(userService.UserValidation(user.getPassword(),user.getEmail())){
+     String getLoginInfo(@ModelAttribute UserLoginRequest request, Model model){
+        if(userService.UserValidation(request.password,request.email)){
             return "/index";
         }
         return "login";
     }
-
-
 }

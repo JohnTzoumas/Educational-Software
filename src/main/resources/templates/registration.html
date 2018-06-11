@@ -73,11 +73,6 @@
             <input type="number" id="age" class="form-control form-group" placeholder="Age(10-99)"
                    th:field="*{age}"/>
 
-          <span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"
-                class="validation-message alert alert-danger">Gender Error</span>
-            <input type="text" id="gender" class="form-control form-group" placeholder="Gender"
-                   th:field="*{gender}"/>
-
           <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}"
                 class="validation-message alert alert-danger">Role Error</span>
           <input type="text" id="role" class="form-control form-group" placeholder="Role"
