@@ -6,6 +6,6 @@ class Utils {
     static final def CHAPTERS = [
             0: 'Vocabulary',
             1: 'Grammar',
-            2: 'Syntax'
+            2: 'Writing'
     ]
 }
