@@ -17,7 +17,7 @@
 
 <div th:fragment="navbar">
     <nav class="navbar navbar-dark bg-dark navbar-expand-lg sticky-top">
-        <a class="navbar-brand" href="/">Home</a>
+        <a class="navbar-brand" href="/" th:text="#{nav.home}">Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -25,23 +25,38 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/login" th:text="#{nav.login}">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/registration">Register</a>
+                    <a class="nav-link" href="/registration" th:text="#{nav.register}">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Page#3</a>
+                    <a class="nav-link" href="/dashboard" th:text="#{nav.dashboard}"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Page#4</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Page#5</a>
+                    <a class="nav-link" href="#" th:text="#{nav.stats}">Stats</a>
                 </li>
             </ul>
         </div>
     </nav>
+</div>
+
+<div th:fragment="status">
+    <div id="error" th:if="${!#strings.isEmpty(errors)}">
+        <div class="alert alert-block alert-warning">
+            <button class="close" data-dismiss="alert">&#215;</button>
+            <strong th:utext="#{error.title}">Error</strong>
+            <span th:utext="${#messages.msgOrNull(error) == null ? error : #messages.msgOrNull(error)}">This is an error.</span>
+        </div>
+    </div>
+
+    <div th:if="${!#strings.isEmpty(success)}"> id="updateSuccess">
+        <div class="alert alert-block alert-success">
+            <button class="close" data-dismiss="alert">&#215;</button>
+            <strong th:utext="#{success.title}">Success</strong>
+            <span th:utext="${#messages.msgOrNull(success) == null ? success : #messages.msgOrNull(success)}">This is a success.</span>
+        </div>
+    </div>
 </div>
 
 <div th:fragment="footer">

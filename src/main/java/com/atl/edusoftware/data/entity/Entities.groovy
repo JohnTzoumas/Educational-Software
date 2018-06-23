@@ -10,6 +10,8 @@ import org.hibernate.validator.constraints.NotEmpty
 import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
 import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -19,6 +21,7 @@ import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
 import javax.persistence.SequenceGenerator
 import javax.persistence.Table
+import javax.print.DocFlavor
 import javax.validation.constraints.Max
 import javax.validation.constraints.Min
 import javax.validation.constraints.NotNull
@@ -72,32 +75,36 @@ class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "user_Sequence", sequenceName = "USER_SEQ")
     @Column(name = "id")
     Long id
 
     @Column(name = "email")
-    @Email(message = "Please provide a valid Email address")
+    @Email(message = "Provide a valid Email address")
     @NotEmpty(message = "Please provide an email")
     String email
 
     @Column(name = "password")
-//    @Pattern(regexp="[]",
-//            message="{invalid.email}")
-    @Length(min = 3, message = "Password must be at least 3 characters")
-    @NotEmpty(message = "Please provide a password")
+    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[!@#\$&*])(?=.*[0-9]).{8,16}\$",
+            message = "Provide a Strong Password between 8-16 characters(Including a capital letter, a number and a special character)")
+    @NotEmpty(message = "Provide a password")
     String password
 
-    @Column(name = "name")
-    @Length(min = 2, message = "Name must be at least 2 characters")
-    @NotEmpty(message = "Please provide a name")
-    String name;
+    @Column(name = "first_name")
+    @Length(min = 3, max = 10, message = "Provide a name between 3-10 characters")
+    @NotEmpty(message = "Please provide your first name")
+    String firstName;
 
-    @Column(name = "surname")
-    @Length(min = 2, message = "Surname must be at least 2 characters")
-    @NotEmpty(message = "Please provide a Surname")
-    String surname;
+    @Column(name = "last_name")
+    @Length(min = 3, max = 10, message = "Provide a last name between 3-10 characters")
+    @NotEmpty(message = "Please provide your last name")
+    String lastName;
 
     @Column(name = "role")
-    @NotEmpty(message = "Please provide a role")
-    String role;
+    @Enumerated(EnumType.STRING)
+    Role role = Role.STUDENT;
+}
+
+enum Role {
+    STUDENT, PROFESSOR
 }

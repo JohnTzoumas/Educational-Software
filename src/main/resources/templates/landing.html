@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead"></head>
+
+<body>
+<nav th:include="layout :: navbar"></nav>
+
+<section class="wrapper">
+    <div class="container">
+        <h2 class="text-center display-4" th:text="#{landing.welcome.title}"></h2>
+        <div class="row justify-content-around mt-5">
+            <p class="col-md-4" th:utext="#{landing.message}"></p>
+        </div>
+    </div>
+</section>
+<div th:include="layout :: footer"></div>
+</body>
+</html>

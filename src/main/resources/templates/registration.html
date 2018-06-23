@@ -1,98 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<head th:fragment="htmlhead">
-  <meta charset="utf-8"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="author" content="George Antoniadis"/>
-  <title>User login page</title>
-
-  <link rel='stylesheet prefetch' th:href="@{https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css}"/>
-  <link rel='stylesheet prefetch' th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css}"/>
-  <link rel="stylesheet" th:href="@{style.css}"/>
-</head>
-
+<head th:include="layout :: htmlhead"></head>
 <body>
+<nav th:include="layout :: navbar"></nav>
 
-  <div class="container-fluid">
-<nav class="navbar navbar-dark bg-dark navbar-expand-lg sticky-top">
-    <a class="navbar-brand" href="/">Home</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/registration">Register</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Page#3</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Page#4</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Page#5</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-    <section id="register" class="wrapper">
-      <form th:action="@{/registration}" th:object="${user}" method="post"
-            class="form-signin card col-12 col-md-7 col-xl-4 m-auto"
-            data-toggle="validator">
+<section id="register" class="wrapper">
+    <form th:action="@{/registration}" th:object="${user}" method="post"
+          class="form-signin card col-12 col-md-7 col-xl-4 m-auto"
+          data-toggle="validator">
 
-        <h2 class="form-heading mt-2">Please Register</h2>
+        <h2 class="form-heading mt-2" th:text="#{reg.header}"></h2>
 
-          <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
-               class="validation-message alert alert-danger">Name Error</span>
-            <input type="text" id="name" class="form-control form-group" placeholder="First Name" autofocus="autofocus"
-                   th:field="*{name}"/>
+        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+              class="validation-message alert alert-danger"></span>
+        <input type="text" id="name" class="form-control form-group" th:placeholder="#{reg.first.name}"
+               autofocus="autofocus"
+               th:field="*{firstName}"/>
 
-          <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"
-               class="validation-message alert alert-danger">Surname Error</span>
-            <input type="text" id="surname" class="form-control form-group" placeholder="Last Name"
-                   th:field="*{surname}"/>
+        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+              class="validation-message alert alert-danger"></span>
+        <input type="text" class="form-control form-group" th:placeholder="#{reg.last.name}"
+               th:field="*{lastName}"/>
 
-          <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-                class="validation-message alert alert-danger">Email Error</span>
-            <input type="text" class="form-control form-group" placeholder="Email Address"
-                   th:field="*{email}"/>
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+              class="validation-message alert alert-danger"></span>
+        <input type="text" class="form-control form-group" th:placeholder="#{reg.email}"
+               th:field="*{email}"/>
 
-          <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
-                class="validation-message alert alert-danger">Password Error</span>
-            <input type="password" id="password" class="form-control form-group" placeholder="Password"
-                   th:field="*{password}"/>
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+              class="validation-message alert alert-danger"></span>
+        <input type="password" id="password" class="form-control form-group" th:placeholder="#{reg.password}"
+               th:field="*{password}"/>
 
-          <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"
-                class="validation-message alert alert-danger">Surname Error</span>
-            <input type="number" id="age" class="form-control form-group" placeholder="Age(10-99)"
-                   th:field="*{age}"/>
-
-          <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}"
-                class="validation-message alert alert-danger">Role Error</span>
-          <input type="text" id="role" class="form-control form-group" placeholder="Role"
-                 th:field="*{role}"/>
-
-        <button class="btn btn-lg btn-primary btn-block mb-3 mx-auto col-md-4 col-8" type="submit">Submit</button>
-      </form>
-    </section>
-<section id="copyright" class="fixed-bottom py-3">
-    <div class="copyright text-center text-white">
-      <div class="container">
-        <small>Copyright © We 2018</small>
-      </div>
-    </div>
+        <button class="btn btn-lg btn-primary btn-block mb-3 mx-auto col-md-4 col-8" type="submit"
+                th:text="#{button.submit}"></button>
+    </form>
 </section>
-
-  </div>
-  <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js}"></script>
-<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js}"></script>
-<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js}"></script>
-
+<div th:include="layout :: footer"></div>
 </body>
 </html>
