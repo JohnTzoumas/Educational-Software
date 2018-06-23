@@ -10,34 +10,34 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
-class LoginController {
+ class LoginController {
 
     @Autowired
     private final UserService userService
 
     @Autowired
-    private QuizService quizService;
+    private  QuizService quizService;
 
     @Autowired
-    LoginController(UserService userService) {
+     LoginController(UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping("/")
-    String getIndex() {
-        def all = quizService.findAll()
+     String getIndex(){
+       def all = quizService.findAll()
         return "index";
     }
 
     @GetMapping("/login")
-    String getLogin(Model model) {
+     String getLogin(Model model){
         model.addAttribute("user", new User());
         return "login";
     }
 
     @PostMapping(value = "/login")
-    String getLoginInfo(@ModelAttribute UserLoginRequest request, Model model) {
-        if (userService.UserValidation(request.password, request.email)) {
+     String getLoginInfo(@ModelAttribute UserLoginRequest request, Model model){
+        if(userService.UserValidation(request.password,request.email)){
             return "/index";
         }
         return "login";

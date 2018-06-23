@@ -7,9 +7,9 @@
 
 <section id="register" class="wrapper">
 
-    <form class="form-signin card col-12 col-md-7 col-xl-4 m-auto" th:action="@{/quiz/list}" method="post">
+    <form class="form-signin card col-12 col-md-7 col-xl-4 m-auto" th:action="@{/test/list}" th:object="${isChecked}" method="post">
 
-        <div th:each="question : ${questions}">
+        <div th:each="question :${questions}">
 
             <p th:text="${question.questionText}"></p>
 
@@ -19,9 +19,7 @@
             </div>
 
         </div>
-
         <button class="btn btn-lg btn-primary btn-block mb-3 mx-auto col-md-4 col-8" type="submit">Submit</button>
-
     </form>
 </section>
 <div th:include="layout :: footer"></div>

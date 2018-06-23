@@ -1,7 +1,10 @@
 package com.atl.edusoftware.web
 
-
+import com.atl.edusoftware.annotations.Masked
 import com.atl.edusoftware.annotations.Request
+
+import java.awt.List
+
 
 @Request
 class UserLoginRequest{
