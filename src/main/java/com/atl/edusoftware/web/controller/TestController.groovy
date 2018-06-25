@@ -1,7 +1,6 @@
-package com.atl.edusoftware.web
+package com.atl.edusoftware.web.controller
 
-import com.atl.edusoftware.business.services.QuizService
-
+import com.atl.edusoftware.business.Implementation.QuizServiceImpl
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -11,13 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping
 
 import javax.servlet.http.HttpServletRequest
 
-
 @Controller
 @RequestMapping(value = "/test")
 class TestController {
 
     @Autowired
-    private QuizService quizService
+    private QuizServiceImpl quizService
 
     @GetMapping("/list")
     String getTest(Model model){

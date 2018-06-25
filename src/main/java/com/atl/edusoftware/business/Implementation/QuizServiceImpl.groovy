@@ -1,21 +1,21 @@
-package com.atl.edusoftware.business.services
+package com.atl.edusoftware.business.Implementation
 
-import com.atl.edusoftware.data.entity.Question
+import com.atl.edusoftware.data.model.Question
 import com.atl.edusoftware.data.repository.QuestionRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class QuizService{
+class QuizServiceImpl {
 
     @Autowired
     private QuestionRepository questionRepository
 
-    public Iterable<Question> findAll(){
+    Iterable<Question> findAll() {
         questionRepository.findAll()
     }
 
-    public List<Question> getQuizByChapterId(int chapterId){
+    List<Question> getQuizByChapterId(int chapterId) {
         questionRepository.findByChapterId(chapterId)
     }
 
