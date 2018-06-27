@@ -1,3 +1,7 @@
+INSERT INTO public.role (role_id, role) VALUES (1, 'ADMIN');
+INSERT INTO public.role (role_id, role) VALUES (2, 'PROFESSOR');
+INSERT INTO public.role (role_id, role) VALUES (3, 'STUDENT');
+
 --Chapter 0 Vocabulary questions
 INSERT INTO public.question (id, question_text, chapter_id)
 VALUES (default, 'The author died after a ______ illness.', 0);
@@ -239,7 +243,3 @@ INSERT INTO public.answer (id, answer_text, is_correct, question_id) VALUES (def
 INSERT INTO public.answer (id, answer_text, is_correct, question_id) VALUES (default, 'speculation', true, 30);
 INSERT INTO public.answer (id, answer_text, is_correct, question_id) VALUES (default, 'laundering', false, 30);
 INSERT INTO public.answer (id, answer_text, is_correct, question_id) VALUES (default, 'endorsment', false, 30);
-
-INSERT INTO public.role (role_id, role) VALUES (1, 'ADMIN');
-INSERT INTO public.role (role_id, role) VALUES (2, 'PROFESSOR');
-INSERT INTO public.role (role_id, role) VALUES (3, 'STUDENT');

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead"></head>
+
+<body>
+<nav th:include="layout :: navbar"></nav>
+
+<section id="dashboard" class="wrapper">
+
+    <p th:text="#{result.message(${result})}"></p>
+    <p th:text="${resultMessage}"></p>
+
+</section>
+<div th:include="layout :: footer"></div>
+</body>
+</html>

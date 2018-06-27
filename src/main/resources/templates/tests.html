@@ -11,23 +11,12 @@
         <label for="test-by-chapter" th:text="#{tests.by.chapter}"></label>
         <div id="test-by-chapter" class="btn-group-vertical" role="group">
             <button th:each="chapter : ${T(com.atl.edusoftware.commons.Maps).CHAPTERS}"
-                    th:text="${chapter.value}" class="btn btn-secondary my-2"
-                    name="chapterId" th:value="${chapter.key}" type="submit">
+                    th:text="${chapter.value}"
+                    th:class="${(chapter.key != 3) ? 'btn btn-secondary my-2' : 'btn btn-warning my-2'}"
+                    th:name="${(chapter.key != 3) ? 'chapterId' : 'overall'}" th:value="${chapter.key}" type="submit">
             </button>
         </div>
     </form>
-
-    <!--<form class="text-center card col-12 col-md-7 col-xl-4 m-auto" th:action="@{/tests/overall}"  method="post">-->
-    <!--<h2 class="display-5" th:text="#{dashboard.self.assessment.title}"></h2>-->
-    <!--<label for="test-by-chapter" th:text="#{dashboard.test.by.chapter}"></label>-->
-    <!--<div id="test-by-chapter" class="btn-group-vertical" role="group">-->
-    <!--<button th:each="chapter : ${T(com.atl.edusoftware.commons.Maps).CHAPTERS}"-->
-    <!--th:text="${chapter.value}" class="btn btn-secondary my-2"-->
-    <!--name="chapterId" th:value="${chapter.key}" type="submit">-->
-    <!--</button>-->
-    <!--</div>-->
-    <!--</form>-->
-
 
 </section>
 <div th:include="layout :: footer"></div>
