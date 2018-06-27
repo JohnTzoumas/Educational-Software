@@ -7,11 +7,19 @@
 <nav th:include="layout :: navbar"></nav>
 
 <section id="login" class="wrapper">
+
     <form th:action="@{/login}"  method="post" class="form-signin card col-12 col-md-7 col-xl-4 m-auto">
-        <h2 class="form-heading mt-2">Please Login</h2>
-        <input type="email" class="form-control my-1" name="email" placeholder="Email Address" required="true"
+        <h2 class="form-heading mt-2" th:text="#{login.title}"></h2>
+
+        <span id="input-error" class="validation-message alert alert-danger" th:if="${param.error}"
+              th:text="#{login.error}"></span>
+        <span id="registration-success" class="validation-message alert alert-success" th:if="${successMessage}"
+              th:text="${successMessage}"></span>
+
+        <input type="email" class="form-control my-1" name="email" placeholder="Email Address" required="required"
                autofocus="" />
-        <input type="password" class="form-control my-1" name="password" placeholder="Enter Password" required="true"
+        <input type="password" class="form-control my-1" name="password" placeholder="Enter Password"
+               required="required"
                autofocus="" />
         <button class="btn btn-lg btn-primary btn-block mb-3 mx-auto col-md-4 col-8" type="submit">Login</button>
     </form>

@@ -36,11 +36,14 @@ class UserServiceImpl implements UserService, UserDetailsService {
     void saveUser(User user) {
         user.password = bCryptPasswordEncoder.encode(user.password)
         user.active = 1
-        Role userRole = roleRepository.findByRole("ADMIN")
+        Role userRole = roleRepository.findByRole("STUDENT")
         user.roles = new HashSet<Role>(Arrays.asList(userRole))
         userRepository.save(user)
     }
 
+    /**
+     * Spring Security Methods that handle the validity of the user
+     **/
     @Override
     @Transactional
     UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {

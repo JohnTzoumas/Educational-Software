@@ -1,6 +1,6 @@
 package com.atl.edusoftware.web.controller
 
-import com.atl.edusoftware.business.Implementation.QuizServiceImpl
+import com.atl.edusoftware.business.Implementation.TestsServiceImpl
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest
 class QuizController {
 
     @Autowired
-    private QuizServiceImpl quizService
+    private TestsServiceImpl quizService
 
     @GetMapping("/dashboard")
     String getDashboardView() {
