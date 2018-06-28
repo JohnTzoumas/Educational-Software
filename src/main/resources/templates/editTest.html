@@ -6,44 +6,58 @@
 <nav th:include="layout :: navbar"></nav>
 
 <section class="wrapper">
-    <div class="container">
-        <p class="text-center display-4" th:text="#{edit.theory.title}"></p>
-        <form class="text-center well card col-12 col-md-7 col-xl-8 m-auto" th:action="@{/edit/tests}" method="post">
-            <label>Choose a Chapter:</label>
-            <select name="chapter-id">
+    <form class="col-sm-11" th:object="${testRequest}" th:action="@{/edit/tests}" method="post">
+        <div class="form-group row">
+            <label th:for="*{questionText}" class="col-sm-2 col-form-label">Question:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{questionText}" placeholder="Question"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label th:for="*{answerText1}" class="col-sm-2 col-form-label">First Answer</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{answerText1}" placeholder="First answer"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label th:for="*{answerText2}" class="col-sm-2 col-form-label">Second Answer</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{answerText2}" placeholder="Second Answer"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label th:for="*{answerText3}" class="col-sm-2 col-form-label">Third answer</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{answerText3}" placeholder="Third answer"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label th:for="*{answerText4}" class="col-sm-2 col-form-label">Forth answer</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{answerText4}" placeholder="Forth answer"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" th:for="*{chapterNumber}">Chapter</label>
+            <select class="form-control col-sm-4" th:field="*{chapterNumber}">
                 <option th:each="chapter : ${T(com.atl.edusoftware.commons.Maps).CHAPTERS}"
                         th:text="${chapter.value}"
                         th:value="${chapter.key}">
                 </option>
             </select>
-
-            <label>
-                <input class="col-10" type="text" name="question"/>Question</label>
-
-            <label>Answer 1
-                <input class="col-10" name="answer-1"/></label>
-
-            <label>Answer 2
-                <input class="col-10" name="answer-2"/></label>
-
-            <label>
-                <input class="col-10" name="answer-3"/></label>
-
-            <label>
-                <input class="col-10" name="answer-4"/></label>
-            <label>Choose the correct answer!</label>
-
-            <select name="isCorrect" class="col-4">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" th:for="*{chapterNumber}">Chapter</label>
+            <select class="form-control col-sm-4" th:field="*{chapterNumber}">
+                <option th:each="chapter : ${T(com.atl.edusoftware.commons.Maps).CHAPTERS}"
+                        th:text="${chapter.value}"
+                        th:value="${chapter.key}">
+                </option>
             </select>
+        </div>
+        <button type="submit" class="btn btn-primary col-3 mx-auto my-5">Sign in</button>
 
-            <button type="submit" class="btn btn-primary col-14">Submit</button>
-        </form>
-    </div>
-
+    </form>
 </section>
 
 <div th:include="layout :: footer"></div>
