@@ -13,14 +13,12 @@ import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.servlet.ModelAndView
 
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpSession
 
 @Controller
-@RequestMapping(value = "/dashboard")
 class DashboardController {
     @Autowired
     private TestsService quizService
@@ -34,7 +32,7 @@ class DashboardController {
     @Autowired
     TestsService testsService
 
-    @GetMapping
+    @GetMapping(value = "/dashboard")
     String getDashboardView(HttpSession session) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication()
         if (!(auth instanceof AnonymousAuthenticationToken)) {
@@ -45,22 +43,32 @@ class DashboardController {
         return "dashboard"
     }
 
-    @PostMapping
+    @PostMapping(value = "/dashboard")
     ModelAndView getResults(HttpServletRequest request, HttpSession session) {
         ModelAndView modelAndView = new ModelAndView()
 
         double result = testsService.getResults(request)
         int chapterId = session.getAttribute('chapterId') as int
-        long userId = session.getAttribute('chapterId') as long
+        long userId = session.getAttribute('userId') as long
         String resultMessage = logsService.compareResults(chapterId, result)
         Logs log = ['chapterId': chapterId, 'studentStats': result, 'userId': userId]
 
         logsService.insertOrUpdateOnLogs(log)
 
         modelAndView.setViewName("dashboard")
-        modelAndView.addObject('result', result)
+        modelAndView.addObject('result', result.toString())
         modelAndView.addObject('resultMessage', resultMessage)
         return modelAndView
+    }
+
+    @GetMapping(value = "/stats")
+    ModelAndView getMyStatsView(HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView()
+
+        long userId = session.getAttribute('userId') as long
+
+        modelAndView.setViewName("stats")
+        modelAndView.addObject('statResults', logsService.getLogsByUserId(userId))
     }
 
 }
