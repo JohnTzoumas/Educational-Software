@@ -52,7 +52,7 @@ class LogsService {
     }
 
     List<Logs> getLogsByUserId(Long userId) {
-        logsRepository.findByUserId(userId)
+        logsRepository.findByUserIdOrderByChapterIdAsc(userId)
     }
 
 }

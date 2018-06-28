@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head th:include="layout :: htmlhead"></head>
 
 <body>
@@ -20,6 +21,15 @@
             <a th:href="@{/tests}" type="button" class="btn btn-info btn-lg my-1" th:text="#{dashboard.tests}"></a>
             <a th:href="@{/theory}" type="button" class="btn btn-info btn-lg my-1" th:text="#{dashboard.theory}"></a>
             <a th:href="@{/stats}" type="button" class="btn btn-info btn-lg mt-1 mb-5" th:text="#{dashboard.stats}"></a>
+
+            <th:block th:if="${#strings.trim(role) == 'PROFESSOR'}">
+                <a th:href="@{/edit/tests}" type="button"
+                   class="btn btn-info btn-lg mt-1  professor"
+                   th:text="#{dashboard.edit.tests}"></a>
+                <a th:href="@{/edit/theory}" type="button"
+                   class="btn btn-info btn-lg mt-1 professor mb-5"
+                   th:text="#{dashboard.edit.theory}"></a>
+            </th:block>
         </div>
     </div>
 

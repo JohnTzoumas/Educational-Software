@@ -1,8 +1,10 @@
 package com.atl.edusoftware.web.controller
 
 import com.atl.edusoftware.business.Implementation.UserServiceImpl
+import com.atl.edusoftware.business.services.ChapterService
 import com.atl.edusoftware.business.services.LogsService
 import com.atl.edusoftware.business.services.TestsService
+import com.atl.edusoftware.data.model.Chapter
 import com.atl.edusoftware.data.model.Logs
 import com.atl.edusoftware.data.model.User
 import org.springframework.beans.factory.annotation.Autowired
@@ -11,6 +13,7 @@ import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.servlet.ModelAndView
@@ -32,13 +35,17 @@ class DashboardController {
     @Autowired
     TestsService testsService
 
+    @Autowired
+    ChapterService chapterService
+
     @GetMapping(value = "/dashboard")
-    String getDashboardView(HttpSession session) {
+    String getDashboardView(HttpSession session, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication()
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()
             User user = userService.findUserByEmail(userDetails.username)
             session.setAttribute('userId', user.id)
+            model.addAttribute('role', userDetails.authorities[0])
         }
         return "dashboard"
     }
@@ -71,4 +78,19 @@ class DashboardController {
         modelAndView.addObject('statResults', logsService.getLogsByUserId(userId))
     }
 
+    @GetMapping(value = "/theory")
+    ModelAndView getTheoryView() {
+        ModelAndView modelAndView = new ModelAndView()
+
+        Iterable<Chapter> chapterIterable = chapterService.getAllChapterData()
+        modelAndView.addObject('chapters', chapterIterable)
+        modelAndView.setViewName("theory")
+        return modelAndView
+    }
+
+    @GetMapping(value = "/edit")
+    String getEditView() {
+
+        return 'edit'
+    }
 }
